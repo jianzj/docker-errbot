@@ -3,6 +3,7 @@ set -e
 
 readonly ERRBIN="/app/venv/bin/errbot"
 readonly ERRRUN="/srv"
+readonly ERRCONFIG="${ERRRUN}/config.py"
 
 
 is_set() {
@@ -11,14 +12,6 @@ is_set() {
     [[ -n $var ]]
 }
 
-
-file_exist() {
-    local file=$1
-
-    [[ -e $file ]]
-}
-
-
 # if mounted volume is empty create dirs
 if [ ! "$(ls -A ${ERRRUN})" ]; then
     mkdir "${ERRRUN}/data" "${ERRRUN}/plugins" "${ERRRUN}/errbackends"
@@ -26,7 +19,7 @@ fi
 
 
 # copy default container image config file if not exist on volume
-file_exist ${ERRCONF} \
+[ -f ${ERRCONFIG} ] || \
     || cp /app/config.py ${ERRRUN}
 
 
