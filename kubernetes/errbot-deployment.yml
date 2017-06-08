@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: errbot
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: errbot
+    spec:
+      containers:
+      - name: errbot
+        image: $docker_registry/errbot:v1.0
+        volumeMounts:
+        - name: errbot-volume
+          mountPath: /srv
+        env:
+          - name: BACKEND
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: BACKEND
+          - name: BOT_TOKEN
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: BOT_TOKEN
+          - name: BOT_ADMINS
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: BOT_ADMINS
+          - name: BOT_ALT_PREFIXES
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: BOT_ALT_PREFIXES
+      imagePullSecrets:
+      - name: harbor-secret
+      volumes:
+      - name: errbot-volume
+        emptyDir: {}
+      restartPolicy: Always
