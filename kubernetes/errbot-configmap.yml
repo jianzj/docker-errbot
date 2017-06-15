@@ -8,3 +8,5 @@ data:
   BOT_TOKEN: "$slack_token"
   BOT_ADMINS: "@$your_slack_admin_user"
   BOT_ALT_PREFIXES: "@$your_bot_name"
+  CHATROOM_PRESENCE: "#$your_initial_channel"
+  CHATROOM_FN: "$your_botname"

@@ -19,8 +19,7 @@ fi
 
 
 # copy default container image config file if not exist on volume
-[ -f ${ERRCONFIG} ] || \
-    || cp /app/config.py ${ERRRUN}
+[ -f ${ERRCONFIG} ] || cp /app/config.py ${ERRRUN}
 
 
 # sleep if we need to wait for another container

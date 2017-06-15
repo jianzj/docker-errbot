@@ -37,6 +37,16 @@ spec:
               configMapKeyRef:
                 name: errbot
                 key: BOT_ALT_PREFIXES
+          - name: CHATROOM_PRESENCE
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: CHATROOM_PRESENCE
+          - name: CHATROOM_FN
+            valueFrom:
+              configMapKeyRef:
+                name: errbot
+                key: CHATROOM_FN
       imagePullSecrets:
       - name: harbor-secret
       volumes:

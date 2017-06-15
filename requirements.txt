@@ -24,3 +24,5 @@ filemagic
 raven
 six>=1.9
 pyzmq
+redis
+urlparse2
