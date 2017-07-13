@@ -1,4 +1,10 @@
 python-openstackclient
+python-novaclient
+python-cinderclient
+python-neutronclient
+python-glanceclient
+python-heatclient
+python-swiftclient
 errbot
 sleekxmpp
 pyasn1-modules
