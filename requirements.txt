@@ -35,5 +35,4 @@ pyzmq
 redis
 urlparse2
 prettytable
-python-openstackclient
 PyYAML
