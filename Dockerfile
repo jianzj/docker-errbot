@@ -37,6 +37,7 @@ RUN apt-get update \
          python3-pyasn1 \
          python3-geoip \
          python3-lxml \
+	 vim \
     && locale-gen C.UTF-8 \
     && /usr/sbin/update-locale LANG=C.UTF-8 \
     && echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen \
