@@ -53,9 +53,10 @@ USER $ERR_USER
 WORKDIR /srv
 
 COPY requirements.txt /app/requirements.txt
+COPY errbot-9.9.9.tar.gz /app/errbot-9.9.9.tar.gz
 
 RUN virtualenv /app/venv
-RUN . /app/venv/bin/activate; pip install --no-cache-dir -r /app/requirements.txt
+RUN . /app/venv/bin/activate; pip install --no-cache-dir -r /app/requirements.txt; pip install /app/errbot-9.9.9.tar.gz
 
 COPY config.py /app/config.py
 COPY run.sh /app/venv/bin/run.sh
