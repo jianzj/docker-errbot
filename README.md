@@ -1,3 +1,28 @@
+## Provide a way to build out Errbot special package from source code and build into docker image
+
+- Prepare one docker container which python3 is built in
+
+```
+docker run -it -d --name python3 -v /tmp/errbot-packages:/opt/errbot-packages njqaaa/python3 /bin/bash
+```
+
+- Step into container and build out errbot package from source code in `/opt/errbot-packages`
+
+```
+docker exec -it $containerId /bin/bash
+
+cd /opt/errbot-packages
+git clone https://github.com/errbotio/errbot.git
+cd errbot
+python3 setup.py sdist
+```
+
+Then you will find package in `/tmp/errbot-packages/errbot/dist` in your host
+
+- Copy this package to Dockerfile location and build out docker image
+
+---
+
 # rroemhild/errbot
 
 - [Introduction](#introduction)
