@@ -186,10 +186,13 @@ BOT_ADMINS = tuple(
 # should include the # sign here. For XMPP rooms that are password
 # protected, you can specify another tuple here instead of a string,
 # using the format (RoomName, Password).
-CHATROOM_PRESENCE = tuple(
-    os.environ.get('CHATROOM_PRESENCE',
-                   'err@conference.localhost').split(','),
-)
+
+CHATROOM_PRESENCE = tuple()
+if os.environ.get('CHATROOM_PRESENCE', ''):
+    CHATROOM_PRESENCE = tuple(
+        os.environ.get('CHATROOM_PRESENCE',
+                       'err@conference.localhost').split(','),
+    )
 # The FullName, or nickname, your bot should use. What you set here will
 # be the nickname that Err shows in chatrooms. Note that some XMPP
 # implementations, notably HipChat, are very picky about what name you
@@ -263,7 +266,12 @@ BOT_ALT_PREFIX_CASEINSENSITIVE = bool(
 # Rules listed in ACCESS_CONTROLS_DEFAULT are applied when a command cannot
 # be found inside ACCESS_CONTROLS
 #
-# Example:
+# Example
+ACCESS_CONTROLS_DEFAULT = {'allowusers': BOT_ADMINS}
+if os.environ.get('ALLOW_USERS', ''):
+    ACCESS_CONTROLS_DEFAULT['allowusers'] = tuple(
+        os.environ.get('ALLOW_USERS', '').split(','),
+    )
 #ACCESS_CONTROLS_DEFAULT = {} # Allow everyone access by default
 #ACCESS_CONTROLS = {'status': {'allowrooms': ('someroom@conference.localhost',)},
 #                   'about': {'denyusers': ('baduser@localhost',), 'allowrooms': ('room1@conference.localhost', 'room2@conference.localhost')},
